@@ -1,6 +1,6 @@
 {
     "name": "se7enxweb/ezstarrating",
-    "description": "eZ Star Rating is an extension that allows the addition of a rating system to eZ publish content objects via a dedicated datatype. The current version allows ratings between 1 and 5 stars; users can vote once per session.",
+    "description": "eZ Star Rating is an extension that allows the addition of a rating system to Exponential content objects via a dedicated datatype. The current version allows ratings between 1 and 5 stars; users can vote once per session.",
     "type": "ezpublish-legacy-extension",
     "license": "GPL-2.0-or-later",
     "authors": [
@@ -12,6 +12,9 @@
     "minimum-stability": "dev",
     "require": {
         "se7enxweb/ezpublish-legacy-installer": "*"
+    },
+    "replace": {
+        "se7enxweb/ezstarrating-ls-extension": "self.version"
     },
     "suggest": {
         "se7enxweb/ezdemo": "~6.0.0",

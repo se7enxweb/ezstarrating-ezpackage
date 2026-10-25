@@ -4,6 +4,7 @@
  * 
  * This piece of code depends on jQuery and eZJSCore ( jQuery.ez() plugin ).
  *
+ * @copyright Copyright (C) 1998 - 2026 7x & Exponential Foundation. All rights reserved.
  * @copyright Copyright (c) 1999-2014 eZ Systems AS
  * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2.0
  * @package eZ Starating extension for eZ Publish
@@ -18,7 +19,9 @@
             if ( !node.hasClass('ezsr-star-rating-disabled') )
                    node.addClass('ezsr-star-rating-enabled');
         });
-        $('ul.ezsr-star-rating-enabled li a').click( _rate );
+        $('ul.ezsr-star-rating-enabled li a').on( 'click', _rate );
+        // the stars are links to "#": after a vote (their handler is removed) a click stays on the page
+        $(document).on( 'click', 'ul.ezsr-star-rating li a[href="#"]', function( e ){ e.preventDefault(); });
     });
 
     function _rate( e )
@@ -26,7 +29,7 @@
         e.preventDefault();
         var args = $(this).attr('id').split('_');
         $('#ezsr_rating_' + args[1]).removeClass('ezsr-star-rating-enabled');
-        $('li a', '#ezsr_rating_' + args[1]).unbind( 'click' );
+        $('li a', '#ezsr_rating_' + args[1]).off( 'click' );
         jQuery.ez( 'ezstarrating::rate::' + args[1] + '::' + args[2] + '::' + args[3], {}, _callBack );
         return false;
     }

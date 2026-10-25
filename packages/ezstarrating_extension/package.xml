@@ -2,12 +2,12 @@
 <package version="1.0.0" development="false" install_type="install">
   <name>ezstarrating_extension</name>
   <summary>ezstarrating extension</summary>
-  <description>This package contains the ezstarrating eZ Publish extension</description>
+  <description>This package contains the ezstarrating Exponential extension</description>
   <vendor>eZ systems</vendor>
   <type value="extension"/>
   <ezpublish>
-    <version>4.2.0</version>
-    <named-version>4.2</named-version>
+    <version>6.0.15</version>
+    <named-version>6.0</named-version>
   </ezpublish>
   <maintainers>
     <maintainer>
@@ -17,7 +17,7 @@
     </maintainer>
   </maintainers>
   <packaging>
-    <timestamp>1249024181</timestamp>
+    <timestamp>1792887900</timestamp>
     <host>localhost</host>
   </packaging>
   <documents>
@@ -30,8 +30,8 @@
   </changelog>
   <simple-files/>
   <version>
-    <number>1.0</number>
-    <release>0</release>
+    <number>6.0</number>
+    <release>17</release>
   </version>
   <licence>GPL</licence>
   <state>stable</state>

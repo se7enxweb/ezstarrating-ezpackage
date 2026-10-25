@@ -4,6 +4,7 @@
 //
 // SOFTWARE NAME: eZ Star Rating
 // SOFTWARE RELEASE: 2.x
+// COPYRIGHT NOTICE: Copyright (C) 1998 - 2026 7x & Exponential Foundation
 // COPYRIGHT NOTICE: Copyright (C) 2008 Bruce Morrison, 2009-2014 eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
 // NOTICE: >
@@ -25,6 +26,15 @@
 
 class ezsrRatingObject extends eZPersistentObject
 {
+    /**
+     * Per-request cache for stats(), keyed by content object id. A static property
+     * rather than a function static, so a persistent worker resets it between
+     * requests: it stays bounded, new votes show up, and it never crosses databases.
+     *
+     * @var array
+     */
+    protected static $cachedStats = array( 0 => null );
+
      /**
      * Construct, shouldn't be called directly
      * Use {@link ezsrRatingObject::create()} to create new objects.
@@ -217,10 +227,9 @@ class ezsrRatingObject extends eZPersistentObject
      */
     static function stats( $ContentObjectID )
     {
-        static $cachedStats = array( 0 => null );
-        if ( isset( $cachedStats[$ContentObjectID] ) )
+        if ( isset( self::$cachedStats[$ContentObjectID] ) )
         {
-            return $cachedStats[$ContentObjectID];
+            return self::$cachedStats[$ContentObjectID];
         }
         else
         {
@@ -234,7 +243,7 @@ class ezsrRatingObject extends eZPersistentObject
             if ( isset( $return[0]['rating_count'] ) )
                 $return = $return[0];
 
-            $cachedStats[$ContentObjectID] = $return;
+            self::$cachedStats[$ContentObjectID] = $return;
         }
         return $return;
     }
@@ -416,7 +425,7 @@ class ezsrRatingObject extends eZPersistentObject
             }
         }
 
-        $whereSql = $whereSql ? implode( $whereSql, ' AND ') . ' AND ': '';
+        $whereSql = $whereSql ? implode( ' AND ', $whereSql ) . ' AND ': '';
 
         $extendedAttributeFilter = eZContentObjectTreeNode::createExtendedAttributeFilterSQLStrings( $params['extended_attribute_filter'] );
 

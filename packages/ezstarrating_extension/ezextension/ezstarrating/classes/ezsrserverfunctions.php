@@ -7,6 +7,7 @@
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 // SOFTWARE NAME: eZ Star Rating
 // SOFTWARE RELEASE: 2.x
+// COPYRIGHT NOTICE: Copyright (C) 1998 - 2026 7x & Exponential Foundation
 // COPYRIGHT NOTICE: Copyright (C) 2009-2014 eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
 // NOTICE: >
@@ -35,6 +36,22 @@
 class ezsrServerFunctions extends ezjscServerFunctions
 {
     /**
+     * Whether rate() may run for this request: on POST always, on another method only with
+     * site.ini [eZStarRating] AllowGetRating=enabled (off by default).
+     *
+     * @return bool
+     */
+    public static function requestMethodAllowed()
+    {
+        $method = isset( $_SERVER['REQUEST_METHOD'] ) ? strtoupper( (string)$_SERVER['REQUEST_METHOD'] ) : '';
+        if ( $method === 'POST' )
+            return true;
+        $ini = eZINI::instance();
+        return $ini->hasVariable( 'eZStarRating', 'AllowGetRating' )
+            && $ini->variable( 'eZStarRating', 'AllowGetRating' ) === 'enabled';
+    }
+
+    /**
      * Rate content object attribute id
      *
      * @param array $args ( 0 => contentobjectattribute_id,  1 => contentobject_version, 2 => rating )
@@ -43,7 +60,12 @@ class ezsrServerFunctions extends ezjscServerFunctions
     public static function rate( $args )
     {
         $ret = array( 'id' => 0, 'rated' => false, 'already_rated' => false, 'stats' => false );
-        if ( !isset( $args[2] ) )
+        // A rating changes data: only on POST, which the form token check covers. On GET an
+        // <img src=".../ezjscore/call/ezstarrating::rate::ID::VERSION::1"> on any page overwrote the visitor's vote.
+        // site.ini [eZStarRating] AllowGetRating=enabled keeps a theme of its own that still calls the GET address working.
+        if ( !self::requestMethodAllowed() )
+            throw new InvalidArgumentException( 'Rating expects a POST request' );
+        else if ( !isset( $args[2] ) )
             throw new LengthException( 'Rating expects 3 arguments: attr_id, version, rating' );
         else if ( !is_numeric( $args[0] ) )
             throw new InvalidArgumentException( 'Rating argument[0] attr_id must be a number' );
