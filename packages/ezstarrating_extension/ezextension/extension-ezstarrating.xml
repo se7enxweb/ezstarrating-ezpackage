@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension name="ezstarrating">
-  <file name="CHANGELOG" md5sum="49c6c1f37e2508b64dc97bdc127ea407"/>
-  <file name="LICENSE" md5sum="09e5ab0a2578bb8948c4cf98eba08b02"/>
+  <file name="CHANGELOG" md5sum="8128004ad7f96e5d6c9f6f118706279d"/>
+  <file name="LICENSE" md5sum="eee5f9135e5b658adce09e7e046c881f"/>
   <file name="README" md5sum="6f4556dde622f4fcd220a898e0fa23dc"/>
   <file name="TODO" md5sum="f8f2eeffb4bfabc2994fe363dbfb6f25"/>
   <file name="autoloads" md5sum="d41d8cd98f00b204e9800998ecf8427e" type="dir"/>
-  <file name="ezsrtemplateoperators.php" path="/autoloads" md5sum="b27f62c33bf57aa2f7a53ed558a38a08"/>
-  <file name="eztemplateautoload.php" path="/autoloads" md5sum="f572404b98b5d8bb575bb7113a00b1a3"/>
+  <file name="ezsrtemplateoperators.php" path="/autoloads" md5sum="c70124c745bb7646f342fbab088c56ff"/>
+  <file name="eztemplateautoload.php" path="/autoloads" md5sum="5fe0c1756896c4b53ef741280839e157"/>
   <file name="classes" md5sum="d41d8cd98f00b204e9800998ecf8427e" type="dir"/>
-  <file name="ezsrratingdataobject.php" path="/classes" md5sum="9a40dd2dc431ce1359716f0c9902cb32"/>
-  <file name="ezsrratingfilter.php" path="/classes" md5sum="06af171c11f4bb1e8fe97b981a2406ca"/>
-  <file name="ezsrratingobject.php" path="/classes" md5sum="ef21668e9052f95347fe95ea295b6706"/>
-  <file name="ezsrratingobjecttreenode.php" path="/classes" md5sum="7f84af9ca59407c99eacf3b16c132dd2"/>
-  <file name="ezsrserverfunctions.php" path="/classes" md5sum="6d152011194cbe0971a8afbd7dbbaeb4"/>
+  <file name="ezsrratingdataobject.php" path="/classes" md5sum="ec77a8e2510afed2e98c4252c2cce11d"/>
+  <file name="ezsrratingfilter.php" path="/classes" md5sum="ef1c17f9fc550650d5972df6a43ccb88"/>
+  <file name="ezsrratingobject.php" path="/classes" md5sum="980a0186b54eb2efa8d8426b0ebb7bf3"/>
+  <file name="ezsrratingobjecttreenode.php" path="/classes" md5sum="0205ca78bf89c11de36da3b0cf877975"/>
+  <file name="ezsrserverfunctions.php" path="/classes" md5sum="a115a9e72e7ab7729ce7fcd34b6c3a44"/>
   <file name="composer.json" md5sum="cceed6f2d6626b6c13d9aaa68086192c"/>
   <file name="datatypes" md5sum="d41d8cd98f00b204e9800998ecf8427e" type="dir"/>
   <file name="ezsrrating" path="/datatypes" md5sum="d41d8cd98f00b204e9800998ecf8427e" type="dir"/>
-  <file name="ezsrratingtype.php" path="/datatypes/ezsrrating" md5sum="4ac2a0ab457e424f2d84727a29ad38e5"/>
+  <file name="ezsrratingtype.php" path="/datatypes/ezsrrating" md5sum="877a67bc2528d6281fafed640547bfe6"/>
   <file name="design" md5sum="d41d8cd98f00b204e9800998ecf8427e" type="dir"/>
   <file name="standard" path="/design" md5sum="d41d8cd98f00b204e9800998ecf8427e" type="dir"/>
   <file name="images" path="/design/standard" md5sum="d41d8cd98f00b204e9800998ecf8427e" type="dir"/>
@@ -27,7 +27,7 @@
   <file name="star.gif" path="/design/standard/images" md5sum="8133f85857fcd21ee94e1c6568b6aa58"/>
   <file name="javascript" path="/design/standard" md5sum="d41d8cd98f00b204e9800998ecf8427e" type="dir"/>
   <file name="ezstarrating.js" path="/design/standard/javascript" md5sum="909f813c6a0119dff8af0724120315ea"/>
-  <file name="ezstarrating_jquery.js" path="/design/standard/javascript" md5sum="4456b24bb1c4efd3ff20ad2903107cfe"/>
+  <file name="ezstarrating_jquery.js" path="/design/standard/javascript" md5sum="a6c66eddee401f40607e8597fbc0dec3"/>
   <file name="stylesheets" path="/design/standard" md5sum="d41d8cd98f00b204e9800998ecf8427e" type="dir"/>
   <file name="star_rating.css" path="/design/standard/stylesheets" md5sum="c3b63e4a2f2e619fbff82b04214a1112"/>
   <file name="templates" path="/design/standard" md5sum="d41d8cd98f00b204e9800998ecf8427e" type="dir"/>
@@ -43,8 +43,8 @@
   <file name="ezsrrating.tpl" path="/design/standard/templates/content/datatype/edit" md5sum="d48fdf8275a49ea433c717f58cf74611"/>
   <file name="view" path="/design/standard/templates/content/datatype" md5sum="d41d8cd98f00b204e9800998ecf8427e" type="dir"/>
   <file name="ezsrrating.tpl" path="/design/standard/templates/content/datatype/view" md5sum="e320d649244e19f3c6b96970e30c58ac"/>
-  <file name="extension.xml" md5sum="d290d563f984c6c363e34e0b8c55ab65"/>
-  <file name="ezinfo.php" md5sum="79ee6d04aac48828ab2edef7fae1d73e"/>
+  <file name="extension.xml" md5sum="88de3ab88e6a499c6af1135c264ce739"/>
+  <file name="ezinfo.php" md5sum="8cd49300ce5258804271bb9589b1eccf"/>
   <file name="patch" md5sum="d41d8cd98f00b204e9800998ecf8427e" type="dir"/>
   <file name="extended_attribute_group_by.diff" path="/patch" md5sum="b9209af3f7926583ee30734a8b37bc95"/>
   <file name="phpunit.xml.dist" md5sum="f97fcfe617183f4fe5c0e860b86f3337"/>
