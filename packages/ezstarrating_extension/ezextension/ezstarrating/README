@@ -42,13 +42,34 @@ Follow these steps to add the eZ Star Rating module to your eZ publish installat
        page in the administration interfacea policy on module "ezjscore", function
        "call", with limitation "ezstarrating_rate"
      
+Upgrading
+-----------------
+Since 6.0.18 ezstarrating_data.session_key holds a SHA-256 hash of the session id (64 hex characters)
+instead of the session id itself: whoever could read the table could take over the sessions listed in
+it, and session ids longer than 32 characters did not fit the column. An existing installation runs
+the update script for its database once:
+
+       update/database/<database>/6.0.18/dbupdate-6.0.17-to-6.0.18.sql
+
+On MySQL/MariaDB, PostgreSQL (11 or later) and Oracle (12c or later) it widens the column and hashes
+the stored session ids in place, so a visitor who rated before the update is still recognised in the
+same session. SQLite has no SHA-256 function: the script clears the stored session ids there, the
+ratings themselves stay.
+
+Order: run the script first and deploy the code right after it.
+- New code before the script writes 64 characters into the 32 character column: the insert fails
+  (MySQL/MariaDB in strict mode, PostgreSQL "value too long", Oracle ORA-12899), or, without strict
+  mode, MySQL/MariaDB silently cut the hash to 32 characters. Such rows are never recognised again,
+  and the script would hash them once more.
+- Old code after the script still stores raw session ids, and does not recognise the hashed ones.
+
 Usage
 ----------------
 To use, simply add a Star Rating attribute to the content class you want to be rated.
 
 The stars rate through the ezjscore server function ezstarrating::rate, which answers POST requests only
-(jQuery.ez() with a post object, as design/standard/javascript/ezstarrating_jquery.js does, sends the form
-token with it). A theme of its own that still calls the GET address
+(design/standard/javascript/ezstarrating.js posts, without jQuery, and sends the form token with it, as
+jQuery.ez() with a post object does in ezstarrating_jquery.js, which stays for templates of their own that load it). A theme of its own that still calls the GET address
 <root>/ezjscore/call/ezstarrating::rate::<attribute id>::<version>::<rating> gets "Rating expects a POST request";
 site.ini [eZStarRating] AllowGetRating=enabled keeps it working until it posts, and gives up that protection.
 
